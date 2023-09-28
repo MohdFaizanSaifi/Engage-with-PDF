@@ -63,7 +63,7 @@ def main():
     load_dotenv()
     st.set_page_config(page_title="Chat with PDF", page_icon=":books:")
 
-    #st.write(css, unsafe_allow_html = True)
+    st.write(css, unsafe_allow_html = True)
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
 
@@ -89,7 +89,7 @@ def main():
 
                 # get the text chunks
                 text_chunks = get_text_chunks(raw_text)
-                st.write(text_chunks)
+                #st.write(text_chunks)
 
                  # create vector store
                 vectorstore = get_vectorstore(text_chunks)
