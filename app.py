@@ -29,15 +29,15 @@ def get_text_chunks(text):
     return chunks
 
 def get_vectorstore(text_chunks):
-    #embeddings = OpenAIEmbeddings()
-    embeddings = HuggingFaceInstructEmbeddings(model_name = "barisaydin/gte-small")
+    embeddings = OpenAIEmbeddings()
+    #embeddings = HuggingFaceInstructEmbeddings(model_name = "barisaydin/gte-small")
     vectorscore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorscore
 
 def get_conversation_chain(vectorstore):
-    #llm = OpenAIChat()
+    llm = OpenAIChat()
 
-    llm = HuggingFaceHub(repo_id="tiiuae/falcon-7b", model_kwargs={"temperature":0.7, "max_length":512})
+    #llm = HuggingFaceHub(repo_id="tiiuae/falcon-7b", model_kwargs={"temperature":0.7, "max_length":512})
     memory = ConversationBufferMemory(memory_key = 'chat_history', return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm = llm,
